@@ -13,6 +13,7 @@ module.exports = {
      * Intiate console-engine.js
      * @param {*} stdin 
      * @param {*} stdout 
+     * @returns {Object} { columns: int, rows: int }
      */
     config: function (stdin, stdout) {
         console.clear()
@@ -31,6 +32,9 @@ module.exports = {
         sessionConfig.columns = sessionConfig.out.columns
         sessionConfig.rows = sessionConfig.out.rows
 
-        return true;
+        return {
+            columns: sessionConfig.columns,
+            rows: sessionConfig.rows
+        };
     }
 }
