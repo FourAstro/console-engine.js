@@ -1,6 +1,5 @@
 const child_process = require("child_process")
 const prompt = require("prompt")
-const matrix_js = require("matrix-js")
 
 var sessionConfig = {
     in: null,
@@ -8,7 +7,7 @@ var sessionConfig = {
 
     columns: null,
     rows: null,
-    matrix: null,
+    table: []
 }
 
 /**
@@ -50,17 +49,25 @@ module.exports = {
         sessionConfig.columns = sessionConfig.out.columns
         sessionConfig.rows = sessionConfig.out.rows
 
-        sessionConfig.matrix = matrix_js([sessionConfig.columns, sessionConfig.rows])
+        for (let row = 0; row < sessionConfig.rows; row++) {
+            for (let col = 0; col < sessionConfig.columns; col++) {
+                sessionConfig.table.push(
+                    {
+                        row: row,
+                        col: col,
+                        value: ''
+                    }
+                )
+            }
+        }
 
         return {
             columns: sessionConfig.columns,
-            rows: sessionConfig.rows,
-            matrix: sessionConfig.matrix
+            rows: sessionConfig.rows
         };
     },
 
     sessionConfig: sessionConfig,
-    matrix: sessionConfig.matrix,
 
     /**
      * Center 1 line of string (text)
