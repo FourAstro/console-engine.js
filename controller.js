@@ -5,11 +5,11 @@ const matrix_js = require("matrix-js")
 var sessionConfig = {
     in: null,
     out: null,
+
     columns: null,
     rows: null,
+    matrix: null,
 }
-
-var matrix
 
 /**
  *     COLUMN - COLUMN - COLUMN - COLUMN - COLUMN - COLUMN
@@ -50,16 +50,16 @@ module.exports = {
         sessionConfig.columns = sessionConfig.out.columns
         sessionConfig.rows = sessionConfig.out.rows
 
-        matrix = matrix_js([sessionConfig.columns, sessionConfig.rows])
+        sessionConfig.matrix = matrix_js([sessionConfig.columns, sessionConfig.rows])
 
         return {
             columns: sessionConfig.columns,
             rows: sessionConfig.rows,
-            matrix: matrix
         };
     },
 
     sessionConfig: sessionConfig,
+    matrix: sessionConfig.matrix,
 
     /**
      * Center 1 line of string (text)
