@@ -1,0 +1,23 @@
+{
+  "name": "console-engine.js",
+  "version": "0.0.1-dev",
+  "description": "",
+  "main": "controller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/completelyfcked/console-engine.js.git"
+  },
+  "author": "completelyfcked#0001",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/completelyfcked/console-engine.js/issues"
+  },
+  "homepage": "https://github.com/completelyfcked/console-engine.js#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "prompt": "^1.2.1"
+  }
+}
