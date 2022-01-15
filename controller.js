@@ -24,14 +24,14 @@ module.exports = {
      * Intiate console-engine.js
      * @param {*} stdin 
      * @param {*} stdout 
-     * @param {Boolean} calibrate If you would like a animation.
-     * @returns {Object} `{ columns: int, rows: int }` Columns are lines vertically from left to right, Rows are horizontal loines from top to bottom.
+     * @param {number} refreshRate The speed the output will refresh at
+     * @returns {object} `{ columns: int, rows: int }` Columns are lines vertically from left to right, Rows are horizontal loines from top to bottom.
      */
-    config: function (stdin, stdout) {
-        console.clear()
+    config: function (stdin, stdout, refreshRate) {
+        stdout.clearScreenDown()
 
-        if (!stdin || !stdout) {
-            return console.error(new TypeError("Missing parameters, either 'stdin' or 'stdout'"))
+        if (!stdin || !stdout || !refreshRate) {
+            return console.error(new TypeError("Missing parameters, either 'stdin' or 'stdout' or 'refreshRate'"))
         }
 
         //* Not used anymore
@@ -61,6 +61,8 @@ module.exports = {
             }
         }
 
+        require("./refresh")(refreshRate, sessionConfig)
+
         return {
             columns: sessionConfig.columns,
             rows: sessionConfig.rows
@@ -81,5 +83,15 @@ module.exports = {
         var col = Math.floor(sessionConfig.columns / 2)
         var row = Math.floor(sessionConfig.rows / 2)
         var startCol = col - string.length
+        var array = string.split("")
+
+        console.log(col, row, startCol)
+
+        Object.keys(array).forEach(index => {
+            var character = array[index]
+            var tableElement = sessionConfig.table.findIndex(tab => tab.row == row)
+
+            tableElement.value = character
+        })
     }
 }
