@@ -28,16 +28,17 @@ module.exports = {
      * @param {Boolean} calibrate If you would like a animation.
      * @returns {Object} `{ columns: int, rows: int }` Columns are lines vertically from left to right, Rows are horizontal loines from top to bottom.
      */
-    config: function (stdin, stdout, calibrate, returnData) {
+    config: function (stdin, stdout) {
         console.clear()
 
         if (!stdin || !stdout) {
             return console.error(new TypeError("Missing parameters, either 'stdin' or 'stdout'"))
         }
 
-        if (typeof calibrate != Boolean) {
-            return console.error(new TypeError("Missing parameters, 'calibrate' is not a boolean"))
-        }
+        //* Not used anymore
+        // if (typeof calibrate != Boolean) {
+        //     return console.error(new TypeError("Missing parameters, 'calibrate' is not a boolean"))
+        // }
 
         sessionConfig.in = stdin
         sessionConfig.out = stdout
